@@ -5,4 +5,6 @@ import reactor.core.publisher.Mono;
 
 public interface IOrderEventPublisher {
     Mono<Void> publishOrderCreated(Order order);
+
+    Mono<Void> publishOrderCancelled(Order order);
 }

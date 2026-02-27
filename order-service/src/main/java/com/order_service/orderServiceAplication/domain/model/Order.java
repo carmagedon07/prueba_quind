@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @NoArgsConstructor
@@ -18,6 +19,7 @@ public class Order {
     private List<OrderItem> items;
     private Double totalAmount;
     private OrderStatus status;
+    private LocalDateTime createdAt;
 
     // Métodos de lógica de negocio (no solo getters y setters)
     public void calculateTotal() {
@@ -34,4 +36,11 @@ public class Order {
             throw new IllegalStateException("No se puede cancelar en estado: " + this.status);
         }
     }
+
+    public boolean canBeCancelled() {
+        return this.status == OrderStatus.PENDING ||
+                this.status == OrderStatus.CONFIRMED;
+    }
+
+
 }

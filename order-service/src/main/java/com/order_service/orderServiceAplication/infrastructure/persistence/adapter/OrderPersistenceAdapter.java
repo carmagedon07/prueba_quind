@@ -4,6 +4,7 @@ import com.order_service.orderServiceAplication.domain.model.Order;
 import com.order_service.orderServiceAplication.domain.repository.IOrderRepository;
 import com.order_service.orderServiceAplication.infrastructure.persistence.entity.OrderEntity;
 import com.order_service.orderServiceAplication.infrastructure.persistence.repository.IR2dbcOrderRepository;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -44,7 +45,9 @@ public class OrderPersistenceAdapter implements IOrderRepository {
     }
 
     @Override
-    public Flux<Order> findByCustomerId(String customerId) {
+    public Flux<Order> findByCustomerId(String customerId, Pageable pageable) {
         return null;
     }
+
+
 }

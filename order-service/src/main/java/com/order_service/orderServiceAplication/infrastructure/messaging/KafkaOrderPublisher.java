@@ -21,4 +21,11 @@ public class KafkaOrderPublisher implements IOrderEventPublisher {
                 kafkaTemplate.send("order-created-topic", String.valueOf(order.getId()), order)
         ).then();
     }
+
+    @Override
+    public Mono<Void> publishOrderCancelled(Order order) {
+        return Mono.fromRunnable(() ->
+                kafkaTemplate.send("order-events-topic", String.valueOf(order.getId()), order)
+        ).then();
+    }
 }
