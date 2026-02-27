@@ -1,0 +1,34 @@
+Project PaymentService {
+  database_type: "PostgreSQL"
+}
+
+Table payments {
+  id uuid [pk]
+  order_id uuid
+
+  status varchar(30) // PENDING, PROCESSED, FAILED, REVERSED
+  amount decimal(12,2)
+  currency varchar(10)
+
+  transaction_reference varchar(100)
+
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table payment_outbox {
+  id uuid [pk]
+
+  aggregate_id uuid
+  aggregate_type varchar(50) // PAYMENT
+  event_type varchar(100)
+
+  payload jsonb
+  metadata jsonb
+
+  status varchar(20)
+  retry_count int
+
+  created_at timestamp
+  published_at timestamp
+}

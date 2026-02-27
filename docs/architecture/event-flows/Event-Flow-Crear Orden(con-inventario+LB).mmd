@@ -1,0 +1,51 @@
+sequenceDiagram
+    actor C as Cliente
+    participant LB as Load Balancer
+    participant G as API Gateway
+    participant O as Order Service
+    participant K as Kafka
+    participant I as Inventory Service
+    participant P as Payment Service
+    participant N as Notification Service
+
+    C->>LB: POST /orders
+    LB->>G: Forward
+    G->>O: CreateOrderCommand
+
+    O->>O: Crear Order (PENDING)
+    O->>O: Guardar estado en PostgreSQL
+    O->>O: Guardar OrderCreated en MongoDB (Event Store)
+    O->>K: Publish OrderCreated
+
+    K->>I: OrderCreated
+    I->>I: Validate Inventory
+
+    alt Inventario OK
+        I->>K: InventoryValidated
+        K->>P: InventoryValidated
+        P->>P: Procesar pago
+        P->>P: Guardar estado en PostgreSQL
+
+        alt Pago exitoso
+            P->>K: PaymentProcessed
+            K->>O: PaymentProcessed
+            O->>O: Update CONFIRMED
+            O->>O: Guardar OrderConfirmed en MongoDB
+            O->>K: OrderConfirmed
+        else Pago fallido
+            P->>K: PaymentFailed
+            K->>O: PaymentFailed
+            O->>O: Update CANCELLED
+            O->>O: Guardar OrderCancelled en MongoDB
+            O->>K: OrderCancelled
+        end
+
+    else Inventario insuficiente
+        I->>K: InventoryRejected
+        K->>O: InventoryRejected
+        O->>O: Update REJECTED
+        O->>O: Guardar OrderRejected en MongoDB
+    end
+
+    K->>N: Eventos finales
+    N->>N: Notificar cliente

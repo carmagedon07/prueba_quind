@@ -1,0 +1,43 @@
+Project InventoryService {
+  database_type: "PostgreSQL"
+}
+
+Table inventory_items {
+  id uuid [pk]
+  product_id uuid
+
+  available_quantity int
+  reserved_quantity int
+
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table inventory_reservations {
+  id uuid [pk]
+  order_id uuid
+  product_id uuid
+
+  quantity int
+  status varchar(30) // RESERVED, RELEASED
+
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table inventory_outbox {
+  id uuid [pk]
+
+  aggregate_id uuid
+  aggregate_type varchar(50) // INVENTORY
+  event_type varchar(100)
+
+  payload jsonb
+  metadata jsonb
+
+  status varchar(20)
+  retry_count int
+
+  created_at timestamp
+  published_at timestamp
+}

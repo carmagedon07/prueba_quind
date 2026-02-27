@@ -1,0 +1,18 @@
+Project OrderEventStore {
+  database_type: "MongoDB"
+}
+
+Table order_events {
+  event_id uuid [pk]
+
+  aggregate_id uuid
+  aggregate_type varchar(50) // ORDER
+  version int
+
+  event_type varchar(100)
+
+  payload json
+  metadata json
+
+  occurred_at timestamp
+}

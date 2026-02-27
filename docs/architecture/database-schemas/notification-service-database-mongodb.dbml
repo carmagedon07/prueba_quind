@@ -1,0 +1,15 @@
+Project NotificationService {
+  database_type: "MongoDB"
+}
+
+Table notifications {
+  id uuid [pk]
+
+  order_id uuid
+  type varchar(50) // EMAIL, SMS
+
+  status varchar(30) // SENT, FAILED
+  payload json
+
+  sent_at timestamp
+}

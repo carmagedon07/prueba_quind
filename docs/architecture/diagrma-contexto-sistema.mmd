@@ -1,0 +1,34 @@
+flowchart TB
+    Client[Cliente]
+
+    LB[Load Balancer]
+
+    Gateway[API Gateway Cluster]
+
+    OrderService[Order Service]
+    PaymentService[Payment Service]
+    NotificationService[Notification Service]
+
+    Kafka[Kafka Broker Cluster]
+
+    OrdersDB[(PostgreSQL - Orders)]
+    PaymentsDB[(PostgreSQL - Payments)]
+    OrderEvents[(MongoDB - Events)]
+    NotificationsDB[(MongoDB - Notifications)]
+
+    Client --> LB
+    LB --> Gateway
+
+    Gateway --> OrderService
+    Gateway --> PaymentService
+    Gateway --> NotificationService
+
+    OrderService --> OrdersDB
+    OrderService --> OrderEvents
+    PaymentService --> PaymentsDB
+    NotificationService --> NotificationsDB
+
+    OrderService --> Kafka
+    PaymentService --> Kafka
+    Kafka --> OrderService
+    Kafka --> NotificationService

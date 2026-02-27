@@ -1,0 +1,41 @@
+sequenceDiagram
+    actor C as Cliente
+    participant LB as Load Balancer (Sticky)
+    participant G as API Gateway
+    participant O as Order Service
+    participant K as Kafka
+    participant P as Payment Service
+    participant I as Inventory Service
+    participant N as Notification Service
+
+    C->>LB: DELETE /orders/{id}
+    LB->>G: Forward (Sticky)
+    G->>O: CancelOrderCommand
+
+    O->>O: Validar estado permitido
+    O->>O: Guardar OrderCancellationRequested en MongoDB
+    O->>K: OrderCancellationRequested
+
+    K->>P: OrderCancellationRequested
+
+    alt Pago procesado
+        P->>P: Revertir pago
+        P->>P: Guardar estado en PostgreSQL
+        P->>K: PaymentReversed
+
+        K->>I: PaymentReversed
+        I->>I: Restaurar inventario
+        I->>I: Guardar estado en PostgreSQL
+
+    else Pago no procesado
+        P->>K: PaymentNotProcessed
+    end
+
+    K->>O: PaymentReversed / PaymentNotProcessed
+
+    O->>O: Update estado CANCELLED
+    O->>O: Guardar OrderCancelled en MongoDB
+    O->>K: OrderCancelled
+
+    K->>N: OrderCancelled
+    N->>N: Notificar cliente

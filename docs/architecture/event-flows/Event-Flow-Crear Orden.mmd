@@ -1,0 +1,38 @@
+sequenceDiagram
+    actor  C as Cliente
+    participant LB as Load Balancer (Sticky Sessions)
+    participant G as API Gateway Cluster
+    participant O as Order Service (Cluster)
+    participant K as Kafka
+    participant P as Payment Service
+    participant N as Notification Service
+
+    C->>LB: POST /orders
+    LB->>G: Forward (Sticky Session)
+    G->>O: CreateOrderCommand
+
+    O->>O: Crear Order (PENDING)
+    O->>O: Guardar en PostgreSQL
+    O->>O: Guardar evento en MongoDB
+
+    O->>K: Publish OrderCreated
+
+    K->>P: OrderCreated
+    P->>P: Procesar pago
+    P->>P: Guardar en PostgreSQL
+
+    alt Pago exitoso
+        P->>K: Publish PaymentProcessed
+        K->>O: PaymentProcessed
+        O->>O: Update Order (CONFIRMED)
+        O->>K: Publish OrderConfirmed
+    else Pago fallido
+        P->>K: Publish PaymentFailed
+        K->>O: PaymentFailed
+        O->>O: Update Order (CANCELLED)
+        O->>K: Publish OrderCancelled
+    end
+
+    K->>N: OrderConfirmed / OrderCancelled
+    N->>N: Enviar notificación
+    N->>N: Guardar log en MongoDB

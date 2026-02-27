@@ -1,0 +1,76 @@
+Project OrderService {
+  database_type: "PostgreSQL"
+}
+
+/* =========================
+   ORDERS (Current State)
+========================= */
+
+Table orders {
+  id uuid [pk]
+  customer_id uuid
+  status varchar(30) // PENDING, CONFIRMED, CANCELLED, REJECTED
+  total_amount decimal(12,2)
+  currency varchar(10)
+
+  version int // Optimistic locking
+
+  created_at timestamp
+  updated_at timestamp
+}
+
+/* =========================
+   ORDER ITEMS
+========================= */
+
+Table order_items {
+  id uuid [pk]
+  order_id uuid [ref: > orders.id]
+
+  product_id uuid
+  quantity int
+  unit_price decimal(12,2)
+  total_price decimal(12,2)
+
+  created_at timestamp
+}
+
+/* =========================
+   READ MODEL (Projection)
+========================= */
+
+Table order_read_model {
+  order_id uuid [pk]
+
+  customer_id uuid
+  status varchar(30)
+  total_amount decimal(12,2)
+  currency varchar(10)
+
+  items_count int
+
+  created_at timestamp
+  confirmed_at timestamp
+  cancelled_at timestamp
+}
+
+/* =========================
+   OUTBOX (For Kafka Publishing)
+========================= */
+
+Table outbox_events {
+  id uuid [pk]
+
+  aggregate_id uuid
+  aggregate_type varchar(50) // ORDER
+  event_type varchar(100)
+
+  payload jsonb
+  metadata jsonb
+
+  status varchar(20) // PENDING, PUBLISHED, FAILED
+
+  retry_count int
+  created_at timestamp
+  published_at timestamp
+}
