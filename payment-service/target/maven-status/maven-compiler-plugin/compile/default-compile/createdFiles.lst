@@ -1,5 +1,14 @@
 com\PaymentService\PaymentServiceAPI\application\dto\OrderEventDTO.class
+com\PaymentService\PaymentServiceAPI\PaymentServiceApiApplication.class
+com\PaymentService\PaymentServiceAPI\application\usecase\RetryPaymentUseCase.class
+com\PaymentService\PaymentServiceAPI\MongoConfig.class
+com\PaymentService\PaymentServiceAPI\domain\model\PaymentAudit.class
+com\PaymentService\PaymentServiceAPI\domain\repository\IPaymentAuditRepository.class
 com\PaymentService\PaymentServiceAPI\infrastructure\messaging\OrderListener.class
 com\PaymentService\PaymentServiceAPI\infrastructure\messaging\PaymentPublisher.class
-com\PaymentService\PaymentServiceAPI\PaymentServiceApiApplication.class
+com\PaymentService\PaymentServiceAPI\infrastructure\persistence\mongodb\IReactiveMongoPaymentAuditRepository.class
+com\PaymentService\PaymentServiceAPI\application\usecase\GetPaymentStatusUseCase.class
+com\PaymentService\PaymentServiceAPI\infrastructure\persistence\adpter\PaymentAuditAdapter.class
+com\PaymentService\PaymentServiceAPI\infrastructure\rest\PaymentController.class
 com\PaymentService\PaymentServiceAPI\application\dto\PaymentEventDTO.class
+com\PaymentService\PaymentServiceAPI\domain\model\PaymentAudit$PaymentAuditBuilder.class

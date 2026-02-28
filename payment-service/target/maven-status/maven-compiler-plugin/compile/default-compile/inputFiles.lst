@@ -1,5 +1,13 @@
 C:\Users\pcaro\OneDrive\Documentos\Desarrollo\prueba_quind\payment-service\src\main\java\com\PaymentService\PaymentServiceAPI\application\dto\OrderEventDTO.java
 C:\Users\pcaro\OneDrive\Documentos\Desarrollo\prueba_quind\payment-service\src\main\java\com\PaymentService\PaymentServiceAPI\application\dto\PaymentEventDTO.java
+C:\Users\pcaro\OneDrive\Documentos\Desarrollo\prueba_quind\payment-service\src\main\java\com\PaymentService\PaymentServiceAPI\application\usecase\GetPaymentStatusUseCase.java
+C:\Users\pcaro\OneDrive\Documentos\Desarrollo\prueba_quind\payment-service\src\main\java\com\PaymentService\PaymentServiceAPI\application\usecase\RetryPaymentUseCase.java
+C:\Users\pcaro\OneDrive\Documentos\Desarrollo\prueba_quind\payment-service\src\main\java\com\PaymentService\PaymentServiceAPI\domain\model\PaymentAudit.java
+C:\Users\pcaro\OneDrive\Documentos\Desarrollo\prueba_quind\payment-service\src\main\java\com\PaymentService\PaymentServiceAPI\domain\repository\IPaymentAuditRepository.java
 C:\Users\pcaro\OneDrive\Documentos\Desarrollo\prueba_quind\payment-service\src\main\java\com\PaymentService\PaymentServiceAPI\infrastructure\messaging\OrderListener.java
 C:\Users\pcaro\OneDrive\Documentos\Desarrollo\prueba_quind\payment-service\src\main\java\com\PaymentService\PaymentServiceAPI\infrastructure\messaging\PaymentPublisher.java
+C:\Users\pcaro\OneDrive\Documentos\Desarrollo\prueba_quind\payment-service\src\main\java\com\PaymentService\PaymentServiceAPI\infrastructure\persistence\adpter\PaymentAuditAdapter.java
+C:\Users\pcaro\OneDrive\Documentos\Desarrollo\prueba_quind\payment-service\src\main\java\com\PaymentService\PaymentServiceAPI\infrastructure\persistence\mongodb\IReactiveMongoPaymentAuditRepository.java
+C:\Users\pcaro\OneDrive\Documentos\Desarrollo\prueba_quind\payment-service\src\main\java\com\PaymentService\PaymentServiceAPI\infrastructure\rest\PaymentController.java
+C:\Users\pcaro\OneDrive\Documentos\Desarrollo\prueba_quind\payment-service\src\main\java\com\PaymentService\PaymentServiceAPI\MongoConfig.java
 C:\Users\pcaro\OneDrive\Documentos\Desarrollo\prueba_quind\payment-service\src\main\java\com\PaymentService\PaymentServiceAPI\PaymentServiceApiApplication.java
