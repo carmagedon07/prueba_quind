@@ -1,1 +1,3 @@
+com\order_service\orderServiceAplication\domain\model\OrderTest.class
 com\order_service\orderServiceAplication\OrderServiceAplicationApplicationTests.class
+com\order_service\orderServiceAplication\application\usecase\CancelOrderUseCaseTest.class

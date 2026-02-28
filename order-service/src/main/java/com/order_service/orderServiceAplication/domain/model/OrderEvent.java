@@ -15,6 +15,7 @@ public class OrderEvent {
     private String id; // ID del evento
     private String orderId;
     private String eventType; // "ORDER_CREATED", "ORDER_CANCELLED", etc.
+    private String status; // estado del evento (ej: SUCCESS, FAILED)
     private String description;
     private LocalDateTime createdAt;
 }
