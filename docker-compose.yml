@@ -53,6 +53,7 @@ services:
       SPRING_R2DBC_URL: r2dbc:postgresql://postgres:5432/order_db
       SPRING_DATA_MONGODB_URI: mongodb://root:pasword1234@mongo:27017/order_event_store?authSource=admin
       SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+    restart: always
 
   payment-service:
     build: ./payment-service
@@ -70,5 +71,20 @@ services:
       SPRING_DATA_MONGODB_URI: mongodb://root:pasword1234@mongo:27017/order_event_store?authSource=admin
       SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:29092
       SPRING_KAFKA_CONSUMER_GROUP_ID: order-service-group
+      SPRING_KAFKA_CONSUMER_AUTO_OFFSET_RESET: earliest
+    restart: always
+
+  notification-service:
+    build: ./notification-service
+    container_name: notification-service-container
+    ports:
+      - "8086:8086"
+    depends_on:
+      - mongo
+      - kafka
+    environment:
+      SPRING_DATA_MONGODB_URI: mongodb://root:pasword1234@mongo:27017/notification_store?authSource=admin
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+      SPRING_KAFKA_CONSUMER_GROUP_ID: notification-service-group
       SPRING_KAFKA_CONSUMER_AUTO_OFFSET_RESET: earliest
     restart: always
