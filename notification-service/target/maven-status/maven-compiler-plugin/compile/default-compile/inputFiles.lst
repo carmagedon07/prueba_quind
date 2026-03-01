@@ -5,6 +5,7 @@ D:\prueba_quind\notification-service\src\main\java\com\notification_service\doma
 D:\prueba_quind\notification-service\src\main\java\com\notification_service\domain\repository\INotificationRepository.java
 D:\prueba_quind\notification-service\src\main\java\com\notification_service\domain\repository\INotificationSender.java
 D:\prueba_quind\notification-service\src\main\java\com\notification_service\infrastructure\configuration\MongoConfig.java
+D:\prueba_quind\notification-service\src\main\java\com\notification_service\infrastructure\configuration\OpenApiConfig.java
 D:\prueba_quind\notification-service\src\main\java\com\notification_service\infrastructure\messaging\NotificationConsumer.java
 D:\prueba_quind\notification-service\src\main\java\com\notification_service\infrastructure\persistence\adpter\EmailService.java
 D:\prueba_quind\notification-service\src\main\java\com\notification_service\infrastructure\persistence\adpter\NotificationAdapter.java
