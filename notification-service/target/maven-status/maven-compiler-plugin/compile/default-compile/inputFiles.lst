@@ -1,9 +1,12 @@
+C:\Users\pcaro\OneDrive\Documentos\Desarrollo\prueba_quind\notification-service\src\main\java\com\notification_service\application\dto\OrderPlacedEvent.java
 C:\Users\pcaro\OneDrive\Documentos\Desarrollo\prueba_quind\notification-service\src\main\java\com\notification_service\application\dto\PaymentEventDTO.java
 C:\Users\pcaro\OneDrive\Documentos\Desarrollo\prueba_quind\notification-service\src\main\java\com\notification_service\application\usecase\GetNotificationsUseCase.java
 C:\Users\pcaro\OneDrive\Documentos\Desarrollo\prueba_quind\notification-service\src\main\java\com\notification_service\domain\model\Notification.java
 C:\Users\pcaro\OneDrive\Documentos\Desarrollo\prueba_quind\notification-service\src\main\java\com\notification_service\domain\repository\INotificationRepository.java
+C:\Users\pcaro\OneDrive\Documentos\Desarrollo\prueba_quind\notification-service\src\main\java\com\notification_service\domain\repository\INotificationSender.java
 C:\Users\pcaro\OneDrive\Documentos\Desarrollo\prueba_quind\notification-service\src\main\java\com\notification_service\infrastructure\configuration\MongoConfig.java
 C:\Users\pcaro\OneDrive\Documentos\Desarrollo\prueba_quind\notification-service\src\main\java\com\notification_service\infrastructure\messaging\NotificationConsumer.java
+C:\Users\pcaro\OneDrive\Documentos\Desarrollo\prueba_quind\notification-service\src\main\java\com\notification_service\infrastructure\persistence\adpter\EmailService.java
 C:\Users\pcaro\OneDrive\Documentos\Desarrollo\prueba_quind\notification-service\src\main\java\com\notification_service\infrastructure\persistence\adpter\NotificationAdapter.java
 C:\Users\pcaro\OneDrive\Documentos\Desarrollo\prueba_quind\notification-service\src\main\java\com\notification_service\infrastructure\persistence\repository\IMongoNotificationRepository.java
 C:\Users\pcaro\OneDrive\Documentos\Desarrollo\prueba_quind\notification-service\src\main\java\com\notification_service\infrastructure\rest\NotificationController.java

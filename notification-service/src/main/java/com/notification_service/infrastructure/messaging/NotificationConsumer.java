@@ -1,5 +1,6 @@
 package com.notification_service.infrastructure.messaging;
 
+import com.notification_service.application.dto.OrderPlacedEvent;
 import com.notification_service.application.dto.PaymentEventDTO;
 import com.notification_service.domain.model.Notification;
 import com.notification_service.domain.repository.INotificationRepository;
@@ -32,5 +33,16 @@ public class NotificationConsumer {
         repository.save(notification).subscribe(n -> log.info("Notificación enviada para orden {}", n.getOrderId()));
     }
 
+    @KafkaListener(topics = "order-placed-topic", groupId = "notification-group")
+    public void handleOrderPlaced(OrderPlacedEvent event) {
+        Notification notification = Notification.builder()
+                .orderId(Long.valueOf(event.orderId())) // Asegúrate que el modelo acepte String "ORD-123"
+                .message("Orden recibida")
+                .status("PENDING")
+                .createdAt(LocalDateTime.now())
+                .build();
+
+        repository.save(notification).subscribe();
+    }
 
 }

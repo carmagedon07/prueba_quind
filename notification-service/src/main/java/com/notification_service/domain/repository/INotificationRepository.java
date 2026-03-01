@@ -8,4 +8,6 @@ public interface INotificationRepository {
 
     Mono<Notification> save(Notification notification);
     Flux<Notification> findByOrderId(Long orderId);
+
+    Flux<Notification> findAll();
 }
