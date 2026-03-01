@@ -158,6 +158,20 @@ fabric.properties
 
 .idea/
 
+# --- Sección explícita para IntelliJ IDEA y archivos .jar ---
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+out/
+
+# Ignorar archivos .jar
+*.jar
+*.jar.original
+
+# Ignorar archivos .lts
+*.lst
+
 # Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-249601023
 
 *.iml
