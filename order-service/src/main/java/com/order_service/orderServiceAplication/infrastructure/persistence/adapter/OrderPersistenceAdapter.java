@@ -1,6 +1,7 @@
 package com.order_service.orderServiceAplication.infrastructure.persistence.adapter;
 
 import com.order_service.orderServiceAplication.domain.model.Order;
+<<<<<<< HEAD
 import com.order_service.orderServiceAplication.domain.model.OrderStatus;
 import com.order_service.orderServiceAplication.domain.repository.IOrderRepository;
 import com.order_service.orderServiceAplication.infrastructure.persistence.entity.OrderEntity;
@@ -16,11 +17,29 @@ public class OrderPersistenceAdapter implements IOrderRepository {
 
     public OrderPersistenceAdapter(IR2dbcOrderRepository orderRepository) {
         this.orderRepository = orderRepository;
+=======
+import com.order_service.orderServiceAplication.domain.repository.IOrderRepository;
+import com.order_service.orderServiceAplication.infrastructure.persistence.entity.OrderEntity;
+import com.order_service.orderServiceAplication.infrastructure.persistence.repository.IR2dbcOrderRepository;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Component;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
+@Component
+public class OrderPersistenceAdapter implements IOrderRepository {
+
+    private final IR2dbcOrderRepository r2dbcRepository;
+
+    public OrderPersistenceAdapter(IR2dbcOrderRepository r2dbcRepository) {
+        this.r2dbcRepository = r2dbcRepository;
+>>>>>>> develop_checkout_2
     }
 
 
     @Override
     public Mono<Order> save(Order order) {
+<<<<<<< HEAD
         //1.Mappear del dominio a entidad base de datos
         OrderEntity entity = new OrderEntity();
         entity.setCustomerId(order.getCustomerId());
@@ -52,11 +71,24 @@ public class OrderPersistenceAdapter implements IOrderRepository {
                         order.setStatus(OrderStatus.valueOf(entity.getStatus()));
                     }
                     order.setTotalAmount(entity.getTotalAmount());
+=======
+        // 1. Mapear de Dominio a Entidad de DB
+        OrderEntity entity = new OrderEntity();
+        entity.setCustomerId(order.getCustomerId());
+        entity.setTotalAmount(order.getTotalAmount());
+        entity.setStatus(order.getStatus().name());
+
+        // 2. Guardar y volver a mapear a Dominio
+        return r2dbcRepository.save(entity)
+                .map(savedEntity -> {
+                    order.setId(Long.valueOf(savedEntity.getId().toString()));
+>>>>>>> develop_checkout_2
                     return order;
                 });
     }
 
     @Override
+<<<<<<< HEAD
     public Flux<Order> findByCustomerId(String customerId, int page, int size) {
         // Implementación simple (sin paginación) - se puede adaptar a paginación si IR2dbcOrderRepository la soporta
         return orderRepository.findByCustomerId(customerId)
@@ -69,10 +101,18 @@ public class OrderPersistenceAdapter implements IOrderRepository {
                     }
                     order.setTotalAmount(entity.getTotalAmount());
                     return order;
+=======
+    public Mono<Order> findById(String id) {
+        return r2dbcRepository.findById(Long.valueOf(id))
+                .map(entity -> {
+                    // Mapeo de vuelta a objeto de dominio...
+                    return new Order();
+>>>>>>> develop_checkout_2
                 });
     }
 
     @Override
+<<<<<<< HEAD
     public Flux<Order> findAll() {
         return orderRepository.findAll()
                 .map(entity -> {
@@ -91,4 +131,11 @@ public class OrderPersistenceAdapter implements IOrderRepository {
     public Mono<Void> deleteById(Long id) {
         return orderRepository.deleteById(id);
     }
+=======
+    public Flux<Order> findByCustomerId(String customerId, Pageable pageable) {
+        return null;
+    }
+
+
+>>>>>>> develop_checkout_2
 }

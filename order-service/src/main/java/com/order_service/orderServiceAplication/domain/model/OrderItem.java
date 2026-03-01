@@ -13,5 +13,8 @@ public class OrderItem {
     private String productId;
     private Integer quantity;
     private Double price; // Precio unitario al momento de la compra
+<<<<<<< HEAD
 
+=======
+>>>>>>> develop_checkout_2
 }

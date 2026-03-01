@@ -1,6 +1,21 @@
+<<<<<<< HEAD
 ~$C$_1.drawio.bkp
 C$_1.drawio
 
+=======
+docker-compose copy.txt
+hs_err_pid19544.log
+order-service.zip
+payment-service.zip
+PaymentServiceAPI.zip
+payment-service/hs_err_pid11176.log
+payment-service/hs_err_pid25948.log
+payment-service/hs_err_pid26804.log
+payment-service/replay_pid11176.log
+
+.jar
+.jar.original
+>>>>>>> develop_checkout_2
 # Created by https://www.gitignore.io/api/java,linux,macos,sonar,gradle,windows,eclipse,sonarqube,sublimetext,intellij+all,visualstudiocode
 # Edit at https://www.gitignore.io/?templates=java,linux,macos,sonar,gradle,windows,eclipse,sonarqube,sublimetext,intellij+all,visualstudiocode
 
@@ -149,6 +164,23 @@ fabric.properties
 
 .idea/
 
+<<<<<<< HEAD
+=======
+# --- Sección explícita para IntelliJ IDEA y archivos .jar ---
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+out/
+
+# Ignorar archivos .jar
+*.jar
+*.jar.original
+
+# Ignorar archivos .lts
+*.lst
+
+>>>>>>> develop_checkout_2
 # Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-249601023
 
 *.iml

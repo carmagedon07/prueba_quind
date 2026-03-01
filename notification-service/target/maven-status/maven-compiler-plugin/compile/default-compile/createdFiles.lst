@@ -1,0 +1,15 @@
+com\notification_service\application\usecase\GetNotificationsUseCase.class
+com\notification_service\infrastructure\configuration\MongoConfig.class
+com\notification_service\application\dto\OrderPlacedEvent.class
+com\notification_service\domain\repository\INotificationRepository.class
+com\notification_service\domain\repository\INotificationSender.class
+com\notification_service\infrastructure\persistence\adpter\NotificationAdapter.class
+com\notification_service\application\dto\PaymentEventDTO.class
+com\notification_service\infrastructure\rest\NotificationController.class
+com\notification_service\infrastructure\persistence\adpter\EmailService.class
+com\notification_service\infrastructure\configuration\OpenApiConfig.class
+com\notification_service\infrastructure\messaging\NotificationConsumer.class
+com\notification_service\domain\model\Notification$NotificationBuilder.class
+com\notification_service\domain\model\Notification.class
+com\notification_service\infrastructure\persistence\repository\IMongoNotificationRepository.class
+com\notification_service\NotificationServiceApplication.class
